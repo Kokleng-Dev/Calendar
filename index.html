@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="style.css">   
+    <!-- <link rel="stylesheet" href="fontawesome-free-v5-web/css/all.css"> -->
+    <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
+</head>
+
+<body class="flex justify-center items-center box-border pt-10">
+    <div class="width-1400 h-auto rounded shadow-xl box-border">
+        <div class="head flex justify-between items-center border-2 border-gray-200 rounded-t p-6">
+            <div class="flex gap-4 items-center">
+                <div class="flex">
+                    <button
+                        class="w-10 h-10 border text-center rounded-l-md text-gray-500 text-xl hover:border-black transition hover:bg-gray-100 hover:text-white flex justify-center items-center"
+                        id="left"> <i class="fas fa-angle-left"></i> </button>
+                    <button
+                        class="w-10 h-10 border text-center rounded-r-md text-gray-500 text-xl hover:border-black transition hover:bg-gray-100 hover:text-white flex justify-center items-center"
+                        id="right"><i class="fas fa-angle-right"></i></button>
+                </div>
+                <div>
+                    <button
+                        class="w-14 h-10 border border-gray-400 text-center bg-gray-400 rounded-md text-gray-500 text-sm hover:border-black transition hover:bg-gray-100 hover:text-gray-400 flex justify-center items-center"
+                        id="today">today</button>
+                </div>
+            </div>
+            <div class="flex items-center h-10">
+                <p class="text-center text-3xl pr-2" id="month"></p> <span class="text-center text-3xl"
+                    id="year"></span>
+            </div>
+            <div class="flex gap-4 items-center">
+                <div class="flex">
+                    <button class="w-16 h-10 border border-black text-center bg-black rounded-l-md text-gray-500 " id="btn-month">month
+                    </button>
+                    <button
+                        class="w-16 h-10  text-center border border-black-200 bg-white text-gray-500 hover:border-black transition hover:bg-gray-100 hover:text-white" id="btn-week">week</button>
+                    <button
+                        class="w-16 h-10  text-center border border-black-200 bg-white rounded-r-md text-gray-500 hover:border-black transition hover:bg-gray-100 hover:text-white" id="btn-day">day</button>
+                </div>
+            </div>
+        </div>
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+        <div class="alldays"></div>
+
+
+    </div>
+
+    <script>
+
+        var date = new Date();
+
+
+        function renderCalendar() {
+
+            date.setDate(1);
+
+            const DAY_OF_MONTH = document.querySelector(".alldays");
+
+            const LAST_DAY = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+
+            const FIRST_DAY_INDEX = date.getDay();
+
+            const LAST_DAY_INDEX = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
+
+            const PREV_LAST_DAY = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+
+            const NEXT_DAY = 7 - LAST_DAY_INDEX - 1;
+
+            const MONTH = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            document.querySelector("#month").innerHTML = MONTH[date.getMonth()];
+
+            document.querySelector("#year").innerHTML = date.getFullYear();
+
+
+            var Even =
+                [
+                    {
+                        "title": "Metting"
+                        , "sub_title": ""
+                        , "start_datetime": "2021-11-15T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#004e92"
+                    }
+                    , {
+                        "title": "Conference"
+                        , "sub_title": ""
+                        , "start_datetime": "2021-11-10T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#42275a"
+                    }
+                    , {
+                        "title": "Launch with customer"
+                        , "sub_title": ""
+                        , "start_datetime": "2021-11-21T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#734b6d"
+                    }
+                    , {
+                        "title": "Happy Hour"
+                        , "sub_title": "fasldkfalsdkfldlfksdf"
+                        , "start_datetime": "2021-12-02T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#243B55"
+                    }
+                    , {
+                        "title": "Birthday Party"
+                        , "sub_title": "fasldkfalsdkfldlfksdf"
+                        , "start_datetime": "2021-12-01T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#F00000"
+                    }
+                    , {
+                        "title": "Metting"
+                        , "sub_title": ""
+                        , "start_datetime": "2021-12-17T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#FD746C"
+                    }
+                    , {
+                        "title": "Metting"
+                        , "sub_title": ""
+                        , "start_datetime": "2021-12-30T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#004e92"
+                    }
+                    , {
+                        "title": "Conference"
+                        , "sub_title": ""
+                        , "start_datetime": "2021-12-31T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#42275a"
+                    }
+                    , {
+                        "title": "Launch with customer"
+                        , "sub_title": ""
+                        , "start_datetime": "2021-12-23T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#734b6d"
+                    }
+                    
+                    , {
+                        "title": "Happy Hour"
+                        , "sub_title": "fasldkfalsdkfldlfksdf"
+                        , "start_datetime": "2021-12-23T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#243B55"
+                    }
+                    
+                    
+                    , {
+                        "title": "Birthday Party"
+                        , "sub_title": "fasldkfalsdkfldlfksdf"
+                        , "start_datetime": "2022-01-21T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#F00000"
+                    }
+                    , {
+                        "title": "Metting"
+                        , "sub_title": ""
+                        , "start_datetime": "2022-02-18T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#FD746C"
+                    }
+                    ,
+                    {
+                        "title": "Metting"
+                        , "sub_title": ""
+                        , "start_datetime": "2022-02-18T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#FD746C"
+                    }
+                    ,
+                    {
+                        "title": "Metting"
+                        , "sub_title": ""
+                        , "start_datetime": "2022-04-30T00:00:00.000Z"
+                        , "end_datetime": ""
+                        , "color": "#FD746C"
+                    }
+                ];
+
+
+            var myEven = '';
+
+            let days = "";
+
+            for (let x = FIRST_DAY_INDEX; x > 0; x--) {
+                days +=
+                    `
+                        <div class="days prev-date">
+                            <span>${PREV_LAST_DAY - x + 1}</span>
+                        </div>
+                    `;
+            }
+
+            for (let i = 1; i <= LAST_DAY; i++) {
+                
+                if (i === new Date().getDate() && date.getMonth() === new Date().getMonth()) {
+
+
+                    for (let x = 0; x < Even.length; x++) {
+
+                        if (i.toString() === new Date(Even[x].start_datetime).getDate().toString() && date.getMonth().toString() === new Date(Even[x].start_datetime).getMonth().toString()) {
+                            myEven += `<span class="even text-white font-black text-center" style="background-color: ${Even[x].color}" >${Even[x].title}</span> `;
+                        }
+                        else {
+                            myEven += ' ';
+                        }
+                    }
+
+                    days +=
+                        `
+		                    <div class="days today">
+		                        <span>${i}</span> 
+		                        ${myEven}
+		                    </div>
+		                `;
+
+                    myEven = ' ';
+
+
+                }
+
+                else {
+                    for (let x = 0; x < Even.length; x++) {
+
+                        if (i.toString() === new Date(Even[x].start_datetime).getDate().toString() && date.getMonth().toString() === new Date(Even[x].start_datetime).getMonth().toString()) {
+                            myEven += `<span class="even text-white font-black text-center" style="background-color: ${Even[x].color}">${Even[x].title}</span> `;
+                        }
+
+                        else {
+                            myEven += ' ';
+                        }
+
+                    }
+
+
+
+                    days += `<div class="days"><span>${i}</span> ${myEven}</div>`;
+
+
+                    myEven = '';
+                }
+
+            }
+
+            for (let j = 1; j <= NEXT_DAY; j++) {
+                days += `<div class="days next-date"><span class="d">${j}</span></div>`;
+            }
+            DAY_OF_MONTH.innerHTML = days;
+
+        };
+
+        document.querySelector("#left").addEventListener("click", () => {
+            date.setMonth(date.getMonth() - 1);
+            renderCalendar();
+        });
+
+        document.querySelector("#right").addEventListener("click", () => {
+            date.setMonth(date.getMonth() + 1);
+            renderCalendar();
+        });
+
+        document.querySelector("#today").addEventListener("click", () => {
+            date.setMonth(new Date().getMonth());
+            date.setFullYear(new Date().getFullYear());
+            date.setDate(new Date().getDate());
+            renderCalendar();
+        })
+
+
+        renderCalendar();
+
+    </script>
+</body>
+
+</html>
